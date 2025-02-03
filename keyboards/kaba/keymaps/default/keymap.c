@@ -1,35 +1,29 @@
 // Copyright 2023 QMK
 // SPDD-License-Identifier: GPL-2.0-or-later
 
-
-    // [1] = LAYOUT(
-    //     _______, _______, _______, _______, _______, _______,                                                       _______, _______, _______, _______, _______, _______,
-    //              _______, _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, _______,
-    //              _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______
-    // )
-
-
+// [1] = LAYOUT(
+//     _______, _______, _______, _______, _______, _______,                                                       _______, _______, _______, _______, _______, _______,
+//              _______, _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, _______,
+//              _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______
+// )
 
 #include QMK_KEYBOARD_H
 #include "split_util.h"
 
-
 void keyboard_post_init_user(void) {
-  // Set our LED pin as output
-  setPinOutput(GP24);
-  // Turn the LED off
-  // (Due to technical reasons, high is off and low is on)
-            //   if (!isLeftHand)
-            //     writePinLow(GP24);
-            //   else
+    // Set our LED pin as output
+    setPinOutput(GP24);
+    // Turn the LED off
+    // (Due to technical reasons, high is off and low is on)
+    //   if (!isLeftHand)
+    //     writePinLow(GP24);
+    //   else
     writePinHigh(GP24);
 }
 
-
-
 bool led_update_kb(led_t led_state) {
     bool res = led_update_user(led_state);
-    if(res) {
+    if (res) {
         // gpio_write_pin sets the pin high for 1 and low for 0.
         // In this example the pins are inverted, setting
         // it low/0 turns it on, and high/1 turns the LED off.
@@ -39,12 +33,9 @@ bool led_update_kb(led_t led_state) {
             gpio_write_pin(GP24, !led_state.caps_lock);
         else
             gpio_write_pin(GP24, !led_state.num_lock);
-
     }
     return res;
 }
-
-
 
 // homerow mod keys
 #define LHRM_G MT(MOD_LGUI, KC_A)
@@ -56,15 +47,9 @@ bool led_update_kb(led_t led_state) {
 #define RHRM_A MT(MOD_LALT, KC_L)
 #define RHRM_G MT(MOD_RGUI, KC_SCLN)
 
+enum layer_names { _QWERTY, _L1, _L2, _Fn, _NOITA };
 
-enum layer_names {
-    _QWERTY,
-    _L1,
-    _L2,
-    _Fn,
-    _NOITA
-};
-
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_QWERTY] = LAYOUT(
@@ -85,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_L2] = LAYOUT(
 //      /           /           /           /           /           /           /           /                       /           /           /           /           /           /           /           /
         QK_RBT,     _______,    KC_HOME,    KC_UP  ,    KC_END ,    KC_PGUP,                                                                KC_PSLS,    KC_P7,      KC_P8,      KC_P9,      KC_PMNS,    KC_PPLS,
-                    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_PGDN,    _______,    _______,                KC_PENT,    MO(_Fn), KC_PAST,    KC_P4,      KC_P5,      KC_P6,      KC_PDOT,
+                    _______,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_PGDN,    _______,    _______,                KC_PENT,    MO(_Fn),    KC_PAST,    KC_P4,      KC_P5,      KC_P6,      KC_PDOT,
                     _______,    _______,    _______,    _______,    _______,    _______,                                        _______,    KC_PDOT,    KC_P1,      KC_P2,      KC_P3,      KC_P0
     ),
 
@@ -106,3 +91,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 };
+// clang-format on

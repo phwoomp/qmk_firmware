@@ -2,7 +2,6 @@
 #define EE_HANDS
 // #define MASTER_LEFT
 
-
 // #define MATRIX_COL_PINS { GP7, GP6, GP5, GP4, GP3, GP2, GP8, GP9 }
 // #define MATRIX_ROW_PINS { GP20, GP23, GP21 }
 
@@ -13,9 +12,9 @@
 #define TAPPING_TERM 300
 #define QUICK_TAP_TERM 50
 
-#define SERIAL_USART_FULL_DUPLEX   // Enable full duplex operation mode.
-#define SERIAL_USART_TX_PIN GP0     // USART TX pin
-#define SERIAL_USART_RX_PIN GP1     // USART RX pin
+#define SERIAL_USART_FULL_DUPLEX // Enable full duplex operation mode.
+#define SERIAL_USART_TX_PIN GP0  // USART TX pin
+#define SERIAL_USART_RX_PIN GP1  // USART RX pin
 
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 500U

@@ -27,9 +27,16 @@
     },
     "python.formatting.provider": "yapf",
     "[json]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": true
     },
     "clangd.arguments": [
         "--header-insertion=never"
-    ]
+    ],
+    "[c]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.stickyScroll.defaultModel": "foldingProviderModel",
+        "editor.suggest.insertMode": "replace",
+    },
+
 }
